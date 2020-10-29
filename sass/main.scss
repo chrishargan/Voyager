@@ -1,71 +1,44 @@
-/*
-COLORS:
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-Green and blue uiGradient #c2e59c and #64b3f4
-Mantle UiGradient rgba(36,198,220, 0.7) and rgba(81,74,157,0.7)
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
 
-*/
-$color-green: #c2e59c;
-$color-purple:  #514A9D;
-$color-turquoise: #24C6DC;
-$color-grey-dark: #777;
-$color-white: #fff;
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
 
-*,
-*::after,
-*::before{
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
+@import "pages/home";
 
-html {
-  /*font-size: 10px;*/
-  font-size: 62.5%;
-}
-/* Why 62.5% ? Because in the best practice you would make a % unit
- based on the browser root size (16px)
-  This is best because some users adjust the root size to see
-   pages better and so you use a % rather than hard
-   code a root size they can't change */
-/* By declaring a font-size in the html we are
-   setting the root font-size (16px usually by default in the browser) to 10px
-   so that we can then easily work out and
-    use relative units rem knowing we
-   are calculating based on 10 */
 
-body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  /* font-size: 16px; */
-  line-height: 1.7;
-  color: $color-grey-dark;
-  /*padding: 30px;*/
-  padding: 3rem;
-  box-sizing: border-box;
-}
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba($color-turquoise, 0.7), rgba($color-purple, 0.7)),
-  url("../img/hero.jpg");
+  background-image: linear-gradient(to right bottom,
+      rgba($color-turquoise, 0.7),
+      rgba($color-purple, 0.7)),
+    url("../img/hero.jpg");
   background-size: cover;
   background-position: top;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
 
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
 
-}
+  &__logo {
+    height: 3.5rem;
+  }
 
-.header__logo {
-  height: 3.5rem;
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
 }
 
 .heading-primary {
@@ -74,105 +47,64 @@ body {
   backface-visibility: hidden;
   /*  stops the shaking at the end of animation */
   margin-bottom: 6rem;
-}
 
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 2.5rem;
-  animation-name: growAndShrink;
-  animation-duration: 2s;
-  animation-timing-function: ease-out;
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 2.5rem;
+    animation-name: growAndShrink;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+  }
 
-}
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.6rem;
+    animation: moveUp 1s ease-out;
+  }
 
-.heading-primary--sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.6rem;
-  animation: moveUp 1s ease-out;
-}
-
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-@keyframes growAndShrink {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    transform: scale(0.8);
-  }
-  70% {
-    transform: scale(1.3);
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes moveUp {
-  0% {
-    opacity: 0;
-    transform: translateY(10rem);
-  }
-  80% {
-    transform: translateY(-1rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-@keyframes moveInTop {
-  0% {
-    opacity: 0;
-    transform: translateY(3rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* stating two sizes on padding automatically dictates top&bottom for first and left&right second */
-.btn:link,
-.btn:visited {
+.btn {
+&:link,
+&:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
   display: inline-block;
   border-radius: 10rem;
-  transition: all .2s;
+  transition: all 0.2s;
   position: relative;
   font-size: 1.6rem;
 }
-
-.btn:hover {
+&:hover {
   transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+  box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  &::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+  }
 }
 
-.btn:active {
+&:active {
   transform: translateY(-1px);
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+  box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
 }
 
-.btn--white {
+&--white {
   background-color: $color-white;
   color: $color-grey-dark;
+
+  &::after {
+  background-color: $color-white;
+}
 }
 
-.btn::after {
+&::after {
   content: "";
   display: inline-block;
   height: 100%;
@@ -182,22 +114,14 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
-  transition: all .4s;
-
+  transition: all 0.4s;
 }
 
-.btn--white::after {
-  background-color: #fff;
-}
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
-.btn--animated {
-  animation: moveInTop .5s ease-out .75s;
+&--animated {
+  animation: moveInTop 0.5s ease-out 0.75s;
   animation-fill-mode: backwards;
   /* this automatically applies the settings of the 0% keyframes
    before the animation starts */
+}
+
 }

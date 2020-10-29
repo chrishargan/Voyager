@@ -1,0 +1,34 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /*font-size: 10px;*/
+  font-size: 62.5%;
+}
+
+/* Why 62.5% ? Because in the best practice you would make a % unit
+ based on the browser root size (16px)
+  This is best because some users adjust the root size to see
+   pages better and so you use a % rather than hard
+   code a root size they can't change */
+/* By declaring a font-size in the html we are
+   setting the root font-size (16px usually by default in the browser) to 10px
+   so that we can then easily work out and
+    use relative units rem knowing we
+   are calculating based on 10 */
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: $color-grey-dark;
+  /*padding: 30px;*/
+  padding: 3rem;
+  box-sizing: border-box;
+}
