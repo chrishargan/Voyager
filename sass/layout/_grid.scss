@@ -1,0 +1,11 @@
+.row{
+    max-width: $grid-width; 
+    background-color: #eee;
+    margin: 0 auto;
+    
+    &:not(:last-child) {
+       margin-bottom: $gutter_vertical; 
+    }
+    // the not pseudo-class allows to specify one element where the styling
+    // otherwise applies
+}

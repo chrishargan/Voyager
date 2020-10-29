@@ -9,6 +9,7 @@
 html {
   /*font-size: 10px;*/
   font-size: 62.5%;
+  // This defines what the base font size is for the page
 }
 
 /* Why 62.5% ? Because in the best practice you would make a % unit
@@ -23,12 +24,5 @@ html {
    are calculating based on 10 */
 
 body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  /* font-size: 16px; */
-  line-height: 1.7;
-  color: $color-grey-dark;
-  /*padding: 30px;*/
-  padding: 3rem;
   box-sizing: border-box;
 }
